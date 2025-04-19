@@ -1,6 +1,8 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:kawser/view/components/social_icons.dart';
 import '../app_theme.dart';
+import '../responsive_helper.dart';
+import '../routes.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({Key? key}) : super(key: key);
@@ -17,11 +19,31 @@ class FooterSection extends StatelessWidget {
             centered: true,
           ),
           const SizedBox(height: 24),
-          Text(
-            "© ${DateTime.now().year} Kawser Ahmed. All rights reserved.",
-            style: const TextStyle(
-              color: AppTheme.textSecondaryColor,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "© ${DateTime.now().year} Kawser Ahmed. All rights reserved.",
+                style: const TextStyle(
+                  color: AppTheme.textSecondaryColor,
+                ),
+              ),
+              // Hidden admin link
+              InkWell(
+                onTap: () {
+                  AppRoutes.navigateToAdmin(context);
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(left: 6.0),
+                  child: Text(
+                    "•",
+                    style: TextStyle(
+                      color: AppTheme.textSecondaryColor,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

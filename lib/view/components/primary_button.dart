@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../app_theme.dart';
+import 'package:kawser/app_theme.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;

@@ -3,19 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:kawser/sections/footer_section_page.dart';
+import 'package:kawser/services/navigation_bar.dart' as nav;
 import 'package:kawser/view/about_page.dart';
 import 'app_theme.dart';
 import 'firebase_options.dart';
-import 'responsive_helper.dart';
 import 'routes.dart';
-import 'sections/navigation_bar.dart' as nav;
 import 'sections/hero_section.dart';
 import 'sections/experience_section.dart';
 import 'sections/case_studies_section.dart';
 import 'sections/testimonials_section.dart';
 import 'sections/recent_work_section.dart';
 import 'sections/contact_section.dart';
-import 'sections/footer_section.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

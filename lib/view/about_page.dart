@@ -1,9 +1,10 @@
   import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kawser/models/skill.dart';
+import 'package:kawser/view/components/section_title.dart';
 import '../app_theme.dart';
 import '../providers/providers.dart';
 import '../responsive_helper.dart';
-import '../widgets/section_title.dart';
 
 class AboutSection extends ConsumerWidget {
   const AboutSection({Key? key}) : super(key: key);

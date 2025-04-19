@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'admin/admin_login.dart';
-import 'admin/admin_panel.dart';
+import 'package:kawser/view/admin/adminLogin_page.dart';
+import 'package:kawser/view/admin/admin_panel_page.dart';
+
 
 class AppRoutes {
   static const String home = '/';

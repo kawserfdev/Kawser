@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kawser/view/components/section_title.dart';
+import 'package:kawser/view/components/testimonial_card.dart';
 import '../app_theme.dart';
 import '../providers/providers.dart';
 import '../responsive_helper.dart';
-import '../widgets/section_title.dart';
-import '../widgets/testimonial_card.dart';
 
 class TestimonialsSection extends ConsumerWidget {
   const TestimonialsSection({Key? key}) : super(key: key);

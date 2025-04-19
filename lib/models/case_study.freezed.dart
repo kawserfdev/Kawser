@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'recent_work.dart';
+part of 'case_study.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-RecentWork _$RecentWorkFromJson(Map<String, dynamic> json) {
-  return _RecentWork.fromJson(json);
+CaseStudy _$CaseStudyFromJson(Map<String, dynamic> json) {
+  return _CaseStudy.fromJson(json);
 }
 
 /// @nodoc
-mixin _$RecentWork {
+mixin _$CaseStudy {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
@@ -28,23 +28,21 @@ mixin _$RecentWork {
   Color get badgeColor => throw _privateConstructorUsedError;
   String get linkText => throw _privateConstructorUsedError;
   String get linkUrl => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
 
-  /// Serializes this RecentWork to a JSON map.
+  /// Serializes this CaseStudy to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of RecentWork
+  /// Create a copy of CaseStudy
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $RecentWorkCopyWith<RecentWork> get copyWith =>
+  $CaseStudyCopyWith<CaseStudy> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RecentWorkCopyWith<$Res> {
-  factory $RecentWorkCopyWith(
-          RecentWork value, $Res Function(RecentWork) then) =
-      _$RecentWorkCopyWithImpl<$Res, RecentWork>;
+abstract class $CaseStudyCopyWith<$Res> {
+  factory $CaseStudyCopyWith(CaseStudy value, $Res Function(CaseStudy) then) =
+      _$CaseStudyCopyWithImpl<$Res, CaseStudy>;
   @useResult
   $Res call(
       {String id,
@@ -53,21 +51,20 @@ abstract class $RecentWorkCopyWith<$Res> {
       String badgeText,
       @ColorConverter() Color badgeColor,
       String linkText,
-      String linkUrl,
-      String imageUrl});
+      String linkUrl});
 }
 
 /// @nodoc
-class _$RecentWorkCopyWithImpl<$Res, $Val extends RecentWork>
-    implements $RecentWorkCopyWith<$Res> {
-  _$RecentWorkCopyWithImpl(this._value, this._then);
+class _$CaseStudyCopyWithImpl<$Res, $Val extends CaseStudy>
+    implements $CaseStudyCopyWith<$Res> {
+  _$CaseStudyCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RecentWork
+  /// Create a copy of CaseStudy
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -79,7 +76,6 @@ class _$RecentWorkCopyWithImpl<$Res, $Val extends RecentWork>
     Object? badgeColor = null,
     Object? linkText = null,
     Object? linkUrl = null,
-    Object? imageUrl = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -110,20 +106,16 @@ class _$RecentWorkCopyWithImpl<$Res, $Val extends RecentWork>
           ? _value.linkUrl
           : linkUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$RecentWorkImplCopyWith<$Res>
-    implements $RecentWorkCopyWith<$Res> {
-  factory _$$RecentWorkImplCopyWith(
-          _$RecentWorkImpl value, $Res Function(_$RecentWorkImpl) then) =
-      __$$RecentWorkImplCopyWithImpl<$Res>;
+abstract class _$$CaseStudyImplCopyWith<$Res>
+    implements $CaseStudyCopyWith<$Res> {
+  factory _$$CaseStudyImplCopyWith(
+          _$CaseStudyImpl value, $Res Function(_$CaseStudyImpl) then) =
+      __$$CaseStudyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -133,19 +125,18 @@ abstract class _$$RecentWorkImplCopyWith<$Res>
       String badgeText,
       @ColorConverter() Color badgeColor,
       String linkText,
-      String linkUrl,
-      String imageUrl});
+      String linkUrl});
 }
 
 /// @nodoc
-class __$$RecentWorkImplCopyWithImpl<$Res>
-    extends _$RecentWorkCopyWithImpl<$Res, _$RecentWorkImpl>
-    implements _$$RecentWorkImplCopyWith<$Res> {
-  __$$RecentWorkImplCopyWithImpl(
-      _$RecentWorkImpl _value, $Res Function(_$RecentWorkImpl) _then)
+class __$$CaseStudyImplCopyWithImpl<$Res>
+    extends _$CaseStudyCopyWithImpl<$Res, _$CaseStudyImpl>
+    implements _$$CaseStudyImplCopyWith<$Res> {
+  __$$CaseStudyImplCopyWithImpl(
+      _$CaseStudyImpl _value, $Res Function(_$CaseStudyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RecentWork
+  /// Create a copy of CaseStudy
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -157,9 +148,8 @@ class __$$RecentWorkImplCopyWithImpl<$Res>
     Object? badgeColor = null,
     Object? linkText = null,
     Object? linkUrl = null,
-    Object? imageUrl = null,
   }) {
-    return _then(_$RecentWorkImpl(
+    return _then(_$CaseStudyImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -188,29 +178,24 @@ class __$$RecentWorkImplCopyWithImpl<$Res>
           ? _value.linkUrl
           : linkUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$RecentWorkImpl implements _RecentWork {
-  _$RecentWorkImpl(
+class _$CaseStudyImpl implements _CaseStudy {
+  _$CaseStudyImpl(
       {required this.id,
       required this.title,
       required this.description,
       required this.badgeText,
       @ColorConverter() required this.badgeColor,
       required this.linkText,
-      required this.linkUrl,
-      required this.imageUrl});
+      required this.linkUrl});
 
-  factory _$RecentWorkImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RecentWorkImplFromJson(json);
+  factory _$CaseStudyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CaseStudyImplFromJson(json);
 
   @override
   final String id;
@@ -227,19 +212,17 @@ class _$RecentWorkImpl implements _RecentWork {
   final String linkText;
   @override
   final String linkUrl;
-  @override
-  final String imageUrl;
 
   @override
   String toString() {
-    return 'RecentWork(id: $id, title: $title, description: $description, badgeText: $badgeText, badgeColor: $badgeColor, linkText: $linkText, linkUrl: $linkUrl, imageUrl: $imageUrl)';
+    return 'CaseStudy(id: $id, title: $title, description: $description, badgeText: $badgeText, badgeColor: $badgeColor, linkText: $linkText, linkUrl: $linkUrl)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RecentWorkImpl &&
+            other is _$CaseStudyImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -250,45 +233,42 @@ class _$RecentWorkImpl implements _RecentWork {
                 other.badgeColor == badgeColor) &&
             (identical(other.linkText, linkText) ||
                 other.linkText == linkText) &&
-            (identical(other.linkUrl, linkUrl) || other.linkUrl == linkUrl) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl));
+            (identical(other.linkUrl, linkUrl) || other.linkUrl == linkUrl));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description,
-      badgeText, badgeColor, linkText, linkUrl, imageUrl);
+      badgeText, badgeColor, linkText, linkUrl);
 
-  /// Create a copy of RecentWork
+  /// Create a copy of CaseStudy
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$RecentWorkImplCopyWith<_$RecentWorkImpl> get copyWith =>
-      __$$RecentWorkImplCopyWithImpl<_$RecentWorkImpl>(this, _$identity);
+  _$$CaseStudyImplCopyWith<_$CaseStudyImpl> get copyWith =>
+      __$$CaseStudyImplCopyWithImpl<_$CaseStudyImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RecentWorkImplToJson(
+    return _$$CaseStudyImplToJson(
       this,
     );
   }
 }
 
-abstract class _RecentWork implements RecentWork {
-  factory _RecentWork(
+abstract class _CaseStudy implements CaseStudy {
+  factory _CaseStudy(
       {required final String id,
       required final String title,
       required final String description,
       required final String badgeText,
       @ColorConverter() required final Color badgeColor,
       required final String linkText,
-      required final String linkUrl,
-      required final String imageUrl}) = _$RecentWorkImpl;
+      required final String linkUrl}) = _$CaseStudyImpl;
 
-  factory _RecentWork.fromJson(Map<String, dynamic> json) =
-      _$RecentWorkImpl.fromJson;
+  factory _CaseStudy.fromJson(Map<String, dynamic> json) =
+      _$CaseStudyImpl.fromJson;
 
   @override
   String get id;
@@ -305,13 +285,11 @@ abstract class _RecentWork implements RecentWork {
   String get linkText;
   @override
   String get linkUrl;
-  @override
-  String get imageUrl;
 
-  /// Create a copy of RecentWork
+  /// Create a copy of CaseStudy
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RecentWorkImplCopyWith<_$RecentWorkImpl> get copyWith =>
+  _$$CaseStudyImplCopyWith<_$CaseStudyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

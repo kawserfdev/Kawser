@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../app_theme.dart';
-import '../../providers/providers.dart';
+import 'package:kawser/app_theme.dart';
+import 'package:kawser/providers/providers.dart';
 import '../forms/case_study_form.dart';
 
 class CaseStudiesTab extends ConsumerWidget {

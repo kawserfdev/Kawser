@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kawser/view/admin/admin_panel_page.dart';
+import 'package:kawser/view/components/primary_button.dart';
 import '../../app_theme.dart';
-import '../../widgets/primary_button.dart';
-import '../admin_panel.dart';
 
 class AdminLogin extends StatefulWidget {
   const AdminLogin({Key? key}) : super(key: key);

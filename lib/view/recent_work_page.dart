@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kawser/view/components/case_card.dart';
+import 'package:kawser/view/components/section_title.dart';
 import '../app_theme.dart';
-import '../models/recent_work.dart';
 import '../providers/providers.dart';
 import '../responsive_helper.dart';
-import '../widgets/case_card.dart';
-import '../widgets/section_title.dart';
 
 class RecentWorkSection extends ConsumerWidget {
   const RecentWorkSection({Key? key}) : super(key: key);

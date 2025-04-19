@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../app_theme.dart';
-import '../responsive_helper.dart';
+import 'package:kawser/app_theme.dart';
+import 'package:kawser/responsive_helper.dart';
 
 class SectionTitle extends StatelessWidget {
   final String title;

@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kawser/app_theme.dart';
+import 'package:kawser/models/case_study.dart';
+import 'package:kawser/providers/providers.dart';
+import 'package:kawser/view/components/primary_button.dart';
 import 'package:uuid/uuid.dart';
-import '../../app_theme.dart';
-import '../../models/case_study.dart';
-import '../../providers/providers.dart';
-import '../../widgets/primary_button.dart';
 
 class CaseStudyForm extends ConsumerStatefulWidget {
   final CaseStudy? caseStudy;
-  
-  const CaseStudyForm({
-    Key? key,
-    this.caseStudy,
-  }) : super(key: key);
+
+  const CaseStudyForm({Key? key, this.caseStudy}) : super(key: key);
 
   @override
   ConsumerState<CaseStudyForm> createState() => _CaseStudyFormState();
@@ -28,18 +25,28 @@ class _CaseStudyFormState extends ConsumerState<CaseStudyForm> {
   late final TextEditingController _linkUrlController;
   late Color _badgeColor;
   bool _isLoading = false;
-  
+
   @override
   void initState() {
     super.initState();
-    _titleController = TextEditingController(text: widget.caseStudy?.title ?? '');
-    _descriptionController = TextEditingController(text: widget.caseStudy?.description ?? '');
-    _badgeTextController = TextEditingController(text: widget.caseStudy?.badgeText ?? '');
-    _linkTextController = TextEditingController(text: widget.caseStudy?.linkText ?? 'View Case Study');
-    _linkUrlController = TextEditingController(text: widget.caseStudy?.linkUrl ?? '');
+    _titleController = TextEditingController(
+      text: widget.caseStudy?.title ?? '',
+    );
+    _descriptionController = TextEditingController(
+      text: widget.caseStudy?.description ?? '',
+    );
+    _badgeTextController = TextEditingController(
+      text: widget.caseStudy?.badgeText ?? '',
+    );
+    _linkTextController = TextEditingController(
+      text: widget.caseStudy?.linkText ?? 'View Case Study',
+    );
+    _linkUrlController = TextEditingController(
+      text: widget.caseStudy?.linkUrl ?? '',
+    );
     _badgeColor = widget.caseStudy?.badgeColor ?? AppTheme.primaryColor;
   }
-  
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -49,13 +56,13 @@ class _CaseStudyFormState extends ConsumerState<CaseStudyForm> {
     _linkUrlController.dispose();
     super.dispose();
   }
-  
+
   Future<void> _saveCaseStudy() async {
     if (_formKey.currentState?.validate() ?? false) {
       setState(() {
         _isLoading = true;
       });
-      
+
       try {
         final firebaseService = ref.read(firebaseServiceProvider);
         final caseStudy = CaseStudy(
@@ -67,20 +74,20 @@ class _CaseStudyFormState extends ConsumerState<CaseStudyForm> {
           linkText: _linkTextController.text.trim(),
           linkUrl: _linkUrlController.text.trim(),
         );
-        
+
         if (widget.caseStudy != null) {
           await firebaseService.updateCaseStudy(caseStudy);
         } else {
           await firebaseService.addCaseStudy(caseStudy);
         }
-        
+
         if (mounted) {
           Navigator.pop(context);
         }
       } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: ${e.toString()}')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error: ${e.toString()}')));
       } finally {
         if (mounted) {
           setState(() {
@@ -90,7 +97,7 @@ class _CaseStudyFormState extends ConsumerState<CaseStudyForm> {
       }
     }
   }
-  
+
   void _openColorPicker() {
     showDialog(
       context: context,
@@ -125,7 +132,9 @@ class _CaseStudyFormState extends ConsumerState<CaseStudyForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.caseStudy != null ? 'Edit Case Study' : 'Add Case Study'),
+        title: Text(
+          widget.caseStudy != null ? 'Edit Case Study' : 'Add Case Study',
+        ),
         backgroundColor: AppTheme.secondaryBackgroundColor,
       ),
       body: SingleChildScrollView(
@@ -224,10 +233,10 @@ class _CaseStudyFormState extends ConsumerState<CaseStudyForm> {
                 _isLoading
                     ? const Center(child: CircularProgressIndicator())
                     : PrimaryButton(
-                        text: widget.caseStudy != null ? 'Update' : 'Save',
-                        onPressed: _saveCaseStudy,
-                        fullWidth: true,
-                      ),
+                      text: widget.caseStudy != null ? 'Update' : 'Save',
+                      onPressed: _saveCaseStudy,
+                      fullWidth: true,
+                    ),
               ],
             ),
           ),
@@ -235,7 +244,7 @@ class _CaseStudyFormState extends ConsumerState<CaseStudyForm> {
       ),
     );
   }
-  
+
   Widget _buildTextFormField({
     required TextEditingController controller,
     required String label,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kawser/app_theme.dart';
+import 'package:kawser/models/testimonial.dart';
+import 'package:kawser/providers/providers.dart';
+import 'package:kawser/view/components/primary_button.dart';
 import 'package:uuid/uuid.dart';
-import '../../app_theme.dart';
-import '../../models/testimonial.dart';
-import '../../providers/providers.dart';
-import '../../widgets/primary_button.dart';
 
 class TestimonialForm extends ConsumerStatefulWidget {
   final Testimonial? testimonial;
