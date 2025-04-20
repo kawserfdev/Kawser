@@ -22,6 +22,7 @@ class HeroSection extends ConsumerWidget {
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
     
     return Container(
+      alignment: Alignment.topCenter,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppTheme.secondaryBackgroundColor,

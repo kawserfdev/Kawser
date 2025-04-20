@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kawser/app_theme.dart';
+import 'package:kawser/responsive_helper.dart';
 
 class TestimonialCard extends StatelessWidget {
   final String testimonial;
   final String name;
   final String position;
-  
+
   const TestimonialCard({
     Key? key,
     required this.testimonial,
@@ -42,13 +43,17 @@ class TestimonialCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 16),
-                child: Text(
-                  testimonial,
-                  style: const TextStyle(
-                    fontStyle: FontStyle.italic,
-                    color: AppTheme.textSecondaryColor,
-                    fontSize: 16,
-                    height: 1.6,
+                child: Flexible(
+                  child: Text(
+                    testimonial,
+                    maxLines: 7,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontStyle: FontStyle.italic,
+                      color: AppTheme.textSecondaryColor,
+                      fontSize: 16,
+                      height: 1.6,
+                    ),
                   ),
                 ),
               ),

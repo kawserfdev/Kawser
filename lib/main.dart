@@ -6,7 +6,6 @@ import 'package:kawser/sections/footer_section_page.dart';
 import 'package:kawser/services/navigation_bar.dart' as nav;
 import 'package:kawser/view/about_page.dart';
 import 'app_theme.dart';
-import 'firebase_options.dart';
 import 'routes.dart';
 import 'sections/hero_section.dart';
 import 'sections/experience_section.dart';
@@ -17,9 +16,7 @@ import 'sections/contact_section.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const ProviderScope(child: PortfolioApp()));
 }
 
@@ -37,9 +34,7 @@ class PortfolioApp extends StatelessWidget {
           seedColor: AppTheme.primaryColor,
           brightness: Brightness.dark,
         ),
-        textTheme: GoogleFonts.poppinsTextTheme(
-          ThemeData.dark().textTheme,
-        ),
+        textTheme: GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme),
         scaffoldBackgroundColor: AppTheme.backgroundColor,
       ),
       initialRoute: '/',
@@ -47,6 +42,20 @@ class PortfolioApp extends StatelessWidget {
       home: const PortfolioHome(),
     );
   }
+}
+
+
+class SectionKeys {
+  static final Map<String, GlobalKey> keys = {
+    'about': GlobalKey(),
+    'case-studies': GlobalKey(),
+    'testimonials': GlobalKey(),
+    'recent-work': GlobalKey(),
+    'contact': GlobalKey(),
+  };
+
+  // Optionally, provide a method to fetch a key by section name
+  static GlobalKey? getKey(String section) => keys[section];
 }
 
 
@@ -60,8 +69,8 @@ class PortfolioHome extends StatefulWidget {
 
 class _PortfolioHomeState extends State<PortfolioHome> {
   final ScrollController _scrollController = ScrollController();
-  
-  // Scroll section controllers for navigation
+
+ // Scroll section controllers for navigation
   final Map<String, GlobalKey> sectionKeys = {
     'about': GlobalKey(),
     'case-studies': GlobalKey(),
@@ -70,6 +79,17 @@ class _PortfolioHomeState extends State<PortfolioHome> {
     'contact': GlobalKey(),
   };
 
+
+// void scrollToSection(String section) {
+//     final key = SectionKeys.getKey(section); // Use the centralized keys
+//     if (key?.currentContext != null) {
+//       Scrollable.ensureVisible(
+//         key!.currentContext!,
+//         duration: const Duration(milliseconds: 800),
+//         curve: Curves.easeInOut,
+//       );
+//     }
+//   }
   void scrollToSection(String section) {
     final key = sectionKeys[section];
     if (key?.currentContext != null) {
@@ -94,9 +114,12 @@ class _PortfolioHomeState extends State<PortfolioHome> {
         children: [
           SingleChildScrollView(
             controller: _scrollController,
+
             child: Column(
               children: [
-                HeroSection(scrollToContact: () => scrollToSection('contact')),
+                HeroSection(
+                  scrollToContact: () => scrollToSection('contact'),
+                ),
                 AboutSection(key: sectionKeys['about']),
                 const ExperienceSection(),
                 CaseStudiesSection(key: sectionKeys['case-studies']),
@@ -107,9 +130,7 @@ class _PortfolioHomeState extends State<PortfolioHome> {
               ],
             ),
           ),
-          nav.NavigationBar(
-            onSectionSelected: scrollToSection,
-          ),
+          nav.NavigationBar(onSectionSelected: scrollToSection),
         ],
       ),
     );
