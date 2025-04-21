@@ -18,7 +18,7 @@ class SocialIcons extends StatelessWidget {
     final socialLinks = [
       {
         'icon': FontAwesomeIcons.github,
-        'url': 'https://github.com/kawserfdev',
+        'url': 'https://github.com/kawserfdev ',
       },
       {
         'icon': FontAwesomeIcons.linkedin,
@@ -26,11 +26,11 @@ class SocialIcons extends StatelessWidget {
       },
       {
         'icon': FontAwesomeIcons.twitter,
-        'url': '#',
+        'url': 'https://x.com/kawserfdev',
       },
       {
         'icon': FontAwesomeIcons.instagram,
-        'url': '#',
+        'url': 'https://www.instagram.com/kawsersoftdev/',
       },
     ];
 

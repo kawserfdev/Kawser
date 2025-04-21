@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kawser/app_theme.dart';
-import 'package:kawser/responsive_helper.dart';
 
 class TestimonialCard extends StatelessWidget {
   final String testimonial;

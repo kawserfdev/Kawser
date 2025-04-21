@@ -8,6 +8,8 @@ class AppRoutes {
   static const String home = '/';
   static const String admin = '/admin';
   static const String adminPanel = '/admin/panel';
+  static const String dataViewer = '/admin/data-viewer';
+
   
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -21,6 +23,8 @@ class AppRoutes {
         } else {
           return MaterialPageRoute(builder: (_) => const AdminLogin());
         }
+        case dataViewer:
+  return MaterialPageRoute(builder: (_) => const DataViewer());
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(

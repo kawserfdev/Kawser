@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kawser/view/components/case_card.dart';
 import 'package:kawser/view/components/section_title.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../app_theme.dart';
-import '../models/case_study.dart';
 import '../providers/providers.dart';
 import '../responsive_helper.dart';
 

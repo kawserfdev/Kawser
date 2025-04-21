@@ -14,12 +14,13 @@ class CaseStudy with _$CaseStudy {
     @ColorConverter() required Color badgeColor,
     required String linkText,
     required String linkUrl,
+     DateTime? createdAt,
+    DateTime? updatedAt,
   }) = _CaseStudy;
 
-  factory CaseStudy.fromJson(Map<String, dynamic> json) => _$CaseStudyFromJson(json);
+ factory CaseStudy.fromJson(Map<String, dynamic> json) => _$CaseStudyFromJson(json);
 }
 
-// Make sure to include your ColorConverter class in this file as well
 class ColorConverter implements JsonConverter<Color, int> {
   const ColorConverter();
 
@@ -28,4 +29,4 @@ class ColorConverter implements JsonConverter<Color, int> {
 
   @override
   int toJson(Color color) => color.value;
-}
+}  

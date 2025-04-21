@@ -168,26 +168,26 @@ void _showSeedDataDialog(BuildContext context, WidgetRef ref) {
                       ),
                 );
 
-                // try {
-                //   await seedGenerator.seedAllData();
-                //   if (mounted) {
-                //     Navigator.pop(context); // Dismiss loading dialog
-                //     ScaffoldMessenger.of(context).showSnackBar(
-                //       const SnackBar(
-                //         content: Text('Data seeded successfully!'),
-                //       ),
-                //     );
-                //   }
-                // } catch (e) {
-                //   if (mounted) {
-                //     Navigator.pop(context); // Dismiss loading dialog
-                //     ScaffoldMessenger.of(context).showSnackBar(
-                //       SnackBar(
-                //         content: Text('Error seeding data: ${e.toString()}'),
-                //       ),
-                //     );
-                //   }
-                // }
+                try {
+                  await seedGenerator.seedAllData();
+                  if () {
+                    Navigator.pop(context); // Dismiss loading dialog
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Data seeded successfully!'),
+                      ),
+                    );
+                  }
+                } catch (e) {
+                  if (mounted) {
+                    Navigator.pop(context); // Dismiss loading dialog
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Error seeding data: ${e.toString()}'),
+                      ),
+                    );
+                  }
+                }
               },
               child: const Text('Seed Data'),
             ),
