@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,11 +12,15 @@ import 'sections/case_studies_section.dart';
 import 'sections/testimonials_section.dart';
 import 'sections/recent_work_section.dart';
 import 'sections/contact_section.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const ProviderScope(child: PortfolioApp()));
+ await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );  runApp(const ProviderScope(child: PortfolioApp()));
 }
 
 class PortfolioApp extends StatelessWidget {

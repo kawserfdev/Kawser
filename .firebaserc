@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "kawser-com"
-  }
+  },
+  "targets": {
+    "kawser-com": {
+      "hosting": {
+        "dev": [
+          "kawser-dev"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

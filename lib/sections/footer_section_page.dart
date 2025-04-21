@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kawser/view/components/social_icons.dart';
 import '../app_theme.dart';
-import '../responsive_helper.dart';
 import '../routes.dart';
 
 class FooterSection extends StatelessWidget {

@@ -19,7 +19,7 @@ class CaseCard extends StatelessWidget {
   final String linkText;
   final String? imageUrl;
   final bool isRecentWork;
-  
+
   const CaseCard({
     Key? key,
     required this.badge,
@@ -43,19 +43,23 @@ class CaseCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (imageUrl != null && isRecentWork)
-            Image.network(
-              imageUrl!,
-              width: double.infinity,
-              height: 200,
-              fit: BoxFit.cover,
-            ),
+            // Image.network(
+            //   imageUrl!,
+            //   width: double.infinity,
+            //   height: 200,
+            //   fit: BoxFit.cover,
+            // ),
+            Image.asset(imageUrl!),
           Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   decoration: BoxDecoration(
                     color: badge.color,
                     borderRadius: BorderRadius.circular(4),
@@ -81,45 +85,43 @@ class CaseCard extends StatelessWidget {
                 const SizedBox(height: 12),
                 Text(
                   description,
-                  style: const TextStyle(
-                    color: AppTheme.textSecondaryColor,
-                  ),
+                  style: const TextStyle(color: AppTheme.textSecondaryColor),
                 ),
                 const SizedBox(height: 16),
                 isRecentWork
                     ? PrimaryButton(
-                        text: linkText,
-                        onPressed: () {
-                          if (linkUrl != null) {
-                            launchUrl(Uri.parse(linkUrl!));
-                          }
-                        },
-                      )
+                      text: linkText,
+                      onPressed: () {
+                        if (linkUrl != null) {
+                          launchUrl(Uri.parse(linkUrl!));
+                        }
+                      },
+                    )
                     : InkWell(
-                        onTap: () {
-                          if (linkUrl != null) {
-                            launchUrl(Uri.parse(linkUrl!));
-                          }
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              linkText,
-                              style: TextStyle(
-                                color: badge.color,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            FaIcon(
-                              FontAwesomeIcons.arrowRight,
-                              size: 14,
+                      onTap: () {
+                        if (linkUrl != null) {
+                          launchUrl(Uri.parse(linkUrl!));
+                        }
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            linkText,
+                            style: TextStyle(
                               color: badge.color,
+                              fontWeight: FontWeight.w500,
                             ),
-                          ],
-                        ),
+                          ),
+                          const SizedBox(width: 8),
+                          FaIcon(
+                            FontAwesomeIcons.arrowRight,
+                            size: 14,
+                            color: badge.color,
+                          ),
+                        ],
                       ),
+                    ),
               ],
             ),
           ),

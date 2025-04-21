@@ -4,17 +4,47 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "source": ".",
+    "public": "build/web",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "frameworksBackend": {
-      "region": "asia-east1"
-    }
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "remoteconfig": {
+    "template": "remoteconfig.template.json"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "kawser-com",
+          "appId": "1:133499258011:android:aa0a461d98e837be17f23e",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "kawser-com",
+          "configurations": {
+            "android": "1:133499258011:android:aa0a461d98e837be17f23e",
+            "ios": "1:133499258011:ios:fb50b16e798788e217f23e",
+            "web": "1:133499258011:web:06dd9c89ab82203a17f23e"
+          }
+        }
+      }
+    }
   }
 }

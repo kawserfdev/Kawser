@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:kawser/view/components/primary_button.dart';
 import 'package:kawser/view/components/social_icons.dart';
@@ -10,17 +9,15 @@ import '../responsive_helper.dart';
 
 class HeroSection extends ConsumerWidget {
   final VoidCallback scrollToContact;
-  
-  const HeroSection({
-    Key? key,
-    required this.scrollToContact,
-  }) : super(key: key);
+
+  const HeroSection({Key? key, required this.scrollToContact})
+    : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = ResponsiveHelper.isMobile(context);
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
-    
+
     return Container(
       alignment: Alignment.topCenter,
       width: double.infinity,
@@ -43,35 +40,36 @@ class HeroSection extends ConsumerWidget {
         child: Container(
           width: containerWidth,
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: isMobile
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 40),
-                    _buildProfileImage(),
-                    const SizedBox(height: 40),
-                    _buildContent(context),
-                    const SizedBox(height: 30),
-                    _buildActionButtons(context),
-                  ],
-                )
-              : Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildContent(context),
-                          const SizedBox(height: 30),
-                          _buildActionButtons(context),
-                        ],
+          child:
+              isMobile
+                  ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 40),
+                      _buildProfileImage(),
+                      const SizedBox(height: 40),
+                      _buildContent(context),
+                      const SizedBox(height: 30),
+                      _buildActionButtons(context),
+                    ],
+                  )
+                  : Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildContent(context),
+                            const SizedBox(height: 30),
+                            _buildActionButtons(context),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 60),
-                    _buildProfileImage(),
-                  ],
-                ),
+                      const SizedBox(width: 60),
+                      _buildProfileImage(),
+                    ],
+                  ),
         ),
       ),
     );
@@ -79,9 +77,10 @@ class HeroSection extends ConsumerWidget {
 
   Widget _buildContent(BuildContext context) {
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Column(
-      crossAxisAlignment: isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
@@ -114,7 +113,7 @@ class HeroSection extends ConsumerWidget {
                   speed: const Duration(milliseconds: 100),
                 ),
                 TypewriterAnimatedText(
-                  'UI/UX Enthusiast',
+                  'An expert in Rest APIs',
                   speed: const Duration(milliseconds: 100),
                 ),
                 TypewriterAnimatedText(
@@ -141,7 +140,8 @@ class HeroSection extends ConsumerWidget {
         const SizedBox(height: 20),
         if (!isMobile) const SizedBox(height: 12),
         Row(
-          mainAxisAlignment: isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
+          mainAxisAlignment:
+              isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
           children: [
             _buildStatItem(context, '10+', 'Projects'),
             Container(
@@ -189,19 +189,19 @@ class HeroSection extends ConsumerWidget {
 
   Widget _buildActionButtons(BuildContext context) {
     final isMobile = ResponsiveHelper.isMobile(context);
-    
+
     return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
       alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
-      spacing: 16,
-      runSpacing: 16,
+      spacing: isMobile ? 0.0 : 16,
+      runSpacing: isMobile ? 12 : 16,
       children: [
-        PrimaryButton(
-          text: "Join My Journey",
-          onPressed: scrollToContact,
-        ),
+        PrimaryButton(text: "Join My Journey", onPressed: scrollToContact),
         OutlinedButton(
           onPressed: () async {
-            final Uri url = Uri.parse('https://drive.google.com/file/d/YOUR_RESUME_ID/view');
+            final Uri url = Uri.parse(
+              'https://drive.google.com/file/d/YOUR_RESUME_ID/view',
+            );
             if (await canLaunchUrl(url)) {
               await launchUrl(url);
             }
@@ -224,11 +224,7 @@ class HeroSection extends ConsumerWidget {
                 ),
               ),
               SizedBox(width: 8),
-              Icon(
-                Icons.download,
-                size: 16,
-                color: AppTheme.primaryColor,
-              ),
+              Icon(Icons.download, size: 16, color: AppTheme.primaryColor),
             ],
           ),
         ),
@@ -260,10 +256,7 @@ class HeroSection extends ConsumerWidget {
           decoration: BoxDecoration(
             color: Colors.grey[800],
             shape: BoxShape.circle,
-            border: Border.all(
-              color: AppTheme.primaryColor,
-              width: 2,
-            ),
+            border: Border.all(color: AppTheme.primaryColor, width: 2),
             boxShadow: [
               BoxShadow(
                 color: AppTheme.primaryColor.withOpacity(0.5),
@@ -306,11 +299,7 @@ class HeroSection extends ConsumerWidget {
             child: const Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
-                  Icons.verified,
-                  color: Colors.white,
-                  size: 16,
-                ),
+                Icon(Icons.verified, color: Colors.white, size: 16),
                 SizedBox(width: 4),
                 Text(
                   'Flutter Expert',
@@ -327,4 +316,4 @@ class HeroSection extends ConsumerWidget {
       ],
     );
   }
-} 
+}

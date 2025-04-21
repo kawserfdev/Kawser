@@ -11,42 +11,49 @@ class RecentWorkSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMobile = ResponsiveHelper.isMobile(context);
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
-    
+
     final recentWorks = [
       {
         'badge': CaseBadge(text: 'E-commerce', color: AppTheme.primaryColor),
         'title': 'GhorerBazar App',
-        'description': 'A complete e-commerce solution for GhorerBazar, featuring product browsing, cart management, order tracking, and partial payment processing.',
+        'description':
+            'A complete e-commerce solution for GhorerBazar, featuring product browsing, cart management, order tracking, and partial payment processing.',
         'linkText': 'View More',
         'linkUrl': '#',
-        'imageUrl': 'https://firebasestorage.googleapis.com/v0/b/profile-website-25647.appspot.com/o/projects%2FHero.png?alt=media&token=c6681c30-c498-4e67-87af-d23612b4dbe4',
+        'imageUrl': 'assets/images/prx.jpg',
       },
       {
-        'badge': CaseBadge(text: 'Management Tool', color: AppTheme.primaryColor),
+        'badge': CaseBadge(
+          text: 'Management Tool',
+          color: AppTheme.primaryColor,
+        ),
         'title': 'Order Management Tool',
-        'description': 'An internal tool for GhorerBazar operations team to manage customer orders, process payments, and track delivery status in real-time.',
+        'description':
+            'An internal tool for GhorerBazar operations team to manage customer orders, process payments, and track delivery status in real-time.',
         'linkText': 'View More',
         'linkUrl': '#',
-        'imageUrl': 'https://firebasestorage.googleapis.com/v0/b/profile-website-25647.appspot.com/o/projects%2Fshpper.png?alt=media&token=4c25d0e6-c539-4bd5-ab8c-ca4c7e498032',
+        'imageUrl': 'assets/images/prx1.jpg',
       },
       {
         'badge': CaseBadge(text: 'Fashion', color: AppTheme.primaryColor),
         'title': 'Glamour',
-        'description': 'A beauty and fashion e-commerce application with personalized recommendations, AR try-on features, and social sharing capabilities.',
+        'description':
+            'A beauty and fashion e-commerce application with personalized recommendations, AR try-on features, and social sharing capabilities.',
         'linkText': 'View More',
         'linkUrl': 'https://github.com/kawserfdev/glamuare',
-        'imageUrl': 'https://firebasestorage.googleapis.com/v0/b/profile-website-25647.appspot.com/o/projects%2Fshpper.png?alt=media&token=4c25d0e6-c539-4bd5-ab8c-ca4c7e498032',
+        'imageUrl': 'assets/images/prx2.jpg',
       },
       {
         'badge': CaseBadge(text: 'Education', color: AppTheme.primaryColor),
         'title': 'School Management System',
-        'description': 'A comprehensive school management solution with student records, attendance tracking, grade management, and parent communication features.',
+        'description':
+            'A comprehensive school management solution with student records, attendance tracking, grade management, and parent communication features.',
         'linkText': 'View More',
         'linkUrl': 'https://github.com/kawserfdev/School-Management-System.git',
-        'imageUrl': 'https://firebasestorage.googleapis.com/v0/b/profile-website-25647.appspot.com/o/projects%2Fshpper.png?alt=media&token=4c25d0e6-c539-4bd5-ab8c-ca4c7e498032',
+        'imageUrl': 'assets/images/prx3.jpeg',
       },
     ];
-    
+
     return Container(
       width: double.infinity,
       color: AppTheme.backgroundColor,
