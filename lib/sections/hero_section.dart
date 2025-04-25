@@ -22,15 +22,14 @@ class HeroSection extends ConsumerWidget {
       alignment: Alignment.topCenter,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppTheme.secondaryBackgroundColor,
-        image: DecorationImage(
-          image: const AssetImage('assets/images/hero_bg_pattern.png'),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            Colors.black.withOpacity(0.6),
-            BlendMode.darken,
-          ),
-        ),
+        // image: DecorationImage(
+        //   image: const AssetImage('assets/images/bg3.jpg'),
+        //   fit: BoxFit.cover,
+        //   colorFilter: ColorFilter.mode(
+        //     Colors.black.withOpacity(0.6),
+        //     BlendMode.darken,
+        //   ),
+        // ),
       ),
       padding: EdgeInsets.only(
         top: 100, // Space for the navigation bar
@@ -191,16 +190,15 @@ class HeroSection extends ConsumerWidget {
     final isMobile = ResponsiveHelper.isMobile(context);
 
     return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
       alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
-      spacing: isMobile ? 0.0 : 16,
-      runSpacing: isMobile ? 12 : 16,
+      spacing: 16, //  isMobile ? 0.0 : 16,
+      runSpacing: 16, // isMobile ? 12 : 16,
       children: [
         PrimaryButton(text: "Join My Journey", onPressed: scrollToContact),
         OutlinedButton(
           onPressed: () async {
             final Uri url = Uri.parse(
-              'https://drive.google.com/file/d/YOUR_RESUME_ID/view',
+              'https://drive.google.com/file/d/1yR27hMMHRNFpHJaFam87xDNhQg5PMPYs/view?usp=sharing',
             );
             if (await canLaunchUrl(url)) {
               await launchUrl(url);
@@ -228,9 +226,13 @@ class HeroSection extends ConsumerWidget {
             ],
           ),
         ),
-        const SizedBox(height: 30), // For proper spacing when wrapped
-        if (!isMobile) const Spacer(),
-        if (!isMobile) const SocialIcons(),
+        // Remove the SizedBox completely
+        // Remove the Spacer for mobile view and handle it differently
+        if (!isMobile)
+          Container(
+            margin: const EdgeInsets.only(left: 20),
+            child: const SocialIcons(),
+          ),
       ],
     );
   }
@@ -264,25 +266,24 @@ class HeroSection extends ConsumerWidget {
                 spreadRadius: 5,
               ),
             ],
-            image: const DecorationImage(
-              // Replace with your actual profile image
-              image: AssetImage('assets/images/profile.jpg'),
+          ),
+          child: ClipOval(
+            child: Image.asset(
+              'assets/images/profile.jpg',
               fit: BoxFit.cover,
-              // onError: () {
-              //   // Fallback if image fails to load
-              //   return FaIcon(
-              //     FontAwesomeIcons.user,
-              //     size: 80,
-              //     color: Color(0xFF666666),
-              //   );
-              // },
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  color: Colors.grey[700],
+                  child: Icon(Icons.person, size: 100, color: Colors.grey[400]),
+                );
+              },
             ),
           ),
         ),
         // Experience badge
         Positioned(
           bottom: 0,
-          right: 30,
+          right: 20,
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
@@ -302,7 +303,7 @@ class HeroSection extends ConsumerWidget {
                 Icon(Icons.verified, color: Colors.white, size: 16),
                 SizedBox(width: 4),
                 Text(
-                  'Flutter Expert',
+                  'Mobile App Development Expert',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

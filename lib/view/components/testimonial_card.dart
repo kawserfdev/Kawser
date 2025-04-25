@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kawser/app_theme.dart';
 
 class TestimonialCard extends StatelessWidget {
   final String testimonial;
   final String name;
   final String position;
-
+  
   const TestimonialCard({
     Key? key,
     required this.testimonial,
@@ -19,9 +17,11 @@ class TestimonialCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: AppTheme.cardBackgroundColor,
+        color: const Color(0xFF1E1E1E), // Make sure this has a color
         borderRadius: BorderRadius.circular(8),
       ),
+      // Constrain the height to prevent layout issues
+      constraints: const BoxConstraints(minHeight: 250),
       child: Stack(
         children: [
           Positioned(
@@ -42,21 +42,19 @@ class TestimonialCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 16),
-                child: Flexible(
-                  child: Text(
-                    testimonial,
-                    maxLines: 7,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontStyle: FontStyle.italic,
-                      color: AppTheme.textSecondaryColor,
-                      fontSize: 16,
-                      height: 1.6,
-                    ),
+                child: Text(
+                  testimonial,
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Color(0xFFBDBDBD), // Light grey text
+                    fontSize: 16,
+                    height: 1.6,
                   ),
+                  maxLines: 8,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const SizedBox(height: 24),
+              const Spacer(), // Push the avatar and name to the bottom
               Row(
                 children: [
                   Container(
@@ -67,8 +65,8 @@ class TestimonialCard extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: const Center(
-                      child: FaIcon(
-                        FontAwesomeIcons.user,
+                      child: Icon(
+                        Icons.person,
                         color: Color(0xFF666666),
                         size: 20,
                       ),
@@ -82,7 +80,7 @@ class TestimonialCard extends StatelessWidget {
                         name,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: AppTheme.textColor,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -90,7 +88,7 @@ class TestimonialCard extends StatelessWidget {
                         position,
                         style: const TextStyle(
                           fontSize: 12,
-                          color: AppTheme.textSecondaryColor,
+                          color: Color(0xFFBDBDBD),
                         ),
                       ),
                     ],

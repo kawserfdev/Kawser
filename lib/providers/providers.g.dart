@@ -12,13 +12,15 @@ String _$recentWorksHash() => r'516e6d32e0cdef83c90db2165f2d61bba590480f';
 @ProviderFor(recentWorks)
 final recentWorksProvider =
     AutoDisposeStreamProvider<List<RecentWork>>.internal(
-  recentWorks,
-  name: r'recentWorksProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$recentWorksHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      recentWorks,
+      name: r'recentWorksProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$recentWorksHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
@@ -29,13 +31,15 @@ String _$testimonialsHash() => r'b9f27d34bf8e80e6bf58238905305a4f3ac49bc4';
 @ProviderFor(testimonials)
 final testimonialsProvider =
     AutoDisposeStreamProvider<List<Testimonial>>.internal(
-  testimonials,
-  name: r'testimonialsProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$testimonialsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      testimonials,
+      name: r'testimonialsProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$testimonialsHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element

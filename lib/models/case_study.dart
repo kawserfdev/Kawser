@@ -14,8 +14,6 @@ class CaseStudy with _$CaseStudy {
     @ColorConverter() required Color badgeColor,
     required String linkText,
     required String linkUrl,
-     DateTime? createdAt,
-    DateTime? updatedAt,
   }) = _CaseStudy;
 
  factory CaseStudy.fromJson(Map<String, dynamic> json) => _$CaseStudyFromJson(json);

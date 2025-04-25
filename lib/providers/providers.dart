@@ -40,3 +40,4 @@ Stream<List<SkillCategory>> skills(SkillsRef ref) {
   final firebaseService = ref.watch(firebaseServiceProvider);
   return firebaseService.getSkills();
 }
+

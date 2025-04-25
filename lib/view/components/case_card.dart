@@ -49,7 +49,7 @@ class CaseCard extends StatelessWidget {
             //   height: 200,
             //   fit: BoxFit.cover,
             // ),
-            Image.asset(imageUrl!),
+            SizedBox(child: Image.asset(imageUrl!)),
           Padding(
             padding: const EdgeInsets.all(24),
             child: Column(
@@ -83,9 +83,13 @@ class CaseCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Text(
-                  description,
-                  style: const TextStyle(color: AppTheme.textSecondaryColor),
+                SizedBox(
+                  child: Text(
+                    description,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(color: AppTheme.textSecondaryColor),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 isRecentWork

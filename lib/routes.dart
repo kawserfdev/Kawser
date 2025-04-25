@@ -23,8 +23,8 @@ class AppRoutes {
         } else {
           return MaterialPageRoute(builder: (_) => const AdminLogin());
         }
-        case dataViewer:
-  return MaterialPageRoute(builder: (_) => const DataViewer());
+  //       case dataViewer:
+  // return MaterialPageRoute(builder: (_) => const DataViewer());
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(

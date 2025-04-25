@@ -15,12 +15,12 @@ import 'sections/contact_section.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );  runApp(const ProviderScope(child: PortfolioApp()));
+  // In main.dart
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const ProviderScope(child: PortfolioApp()));
 }
 
 class PortfolioApp extends StatelessWidget {
@@ -42,11 +42,82 @@ class PortfolioApp extends StatelessWidget {
       ),
       initialRoute: '/',
       onGenerateRoute: AppRoutes.generateRoute,
-      home: const PortfolioHome(),
+      home: const SplashScreen(),
     );
   }
 }
 
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
+
+    _controller.forward();
+
+    _navigateToHome();
+  }
+
+  Future<void> _navigateToHome() async {
+    await Future.delayed(const Duration(seconds: 3)); // wait while animating
+    if (mounted) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const PortfolioHome()),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white, // Background Color
+      body: Center(
+        child: FadeTransition(
+          opacity: _animation,
+          child: ScaleTransition(
+            scale: _animation,
+            child: Container(
+              width: 200,
+              height: 200,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              padding: const EdgeInsets.all(16),
+              child: Image.asset(
+                'assets/images/signature.png',
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class SectionKeys {
   static final Map<String, GlobalKey> keys = {
@@ -61,8 +132,6 @@ class SectionKeys {
   static GlobalKey? getKey(String section) => keys[section];
 }
 
-
-
 class PortfolioHome extends StatefulWidget {
   const PortfolioHome({Key? key}) : super(key: key);
 
@@ -73,7 +142,7 @@ class PortfolioHome extends StatefulWidget {
 class _PortfolioHomeState extends State<PortfolioHome> {
   final ScrollController _scrollController = ScrollController();
 
- // Scroll section controllers for navigation
+  // Scroll section controllers for navigation
   final Map<String, GlobalKey> sectionKeys = {
     'about': GlobalKey(),
     'case-studies': GlobalKey(),
@@ -82,17 +151,16 @@ class _PortfolioHomeState extends State<PortfolioHome> {
     'contact': GlobalKey(),
   };
 
-
-// void scrollToSection(String section) {
-//     final key = SectionKeys.getKey(section); // Use the centralized keys
-//     if (key?.currentContext != null) {
-//       Scrollable.ensureVisible(
-//         key!.currentContext!,
-//         duration: const Duration(milliseconds: 800),
-//         curve: Curves.easeInOut,
-//       );
-//     }
-//   }
+  // void scrollToSection(String section) {
+  //     final key = SectionKeys.getKey(section); // Use the centralized keys
+  //     if (key?.currentContext != null) {
+  //       Scrollable.ensureVisible(
+  //         key!.currentContext!,
+  //         duration: const Duration(milliseconds: 800),
+  //         curve: Curves.easeInOut,
+  //       );
+  //     }
+  //   }
   void scrollToSection(String section) {
     final key = sectionKeys[section];
     if (key?.currentContext != null) {
@@ -120,9 +188,7 @@ class _PortfolioHomeState extends State<PortfolioHome> {
 
             child: Column(
               children: [
-                HeroSection(
-                  scrollToContact: () => scrollToSection('contact'),
-                ),
+                HeroSection(scrollToContact: () => scrollToSection('contact')),
                 AboutSection(key: sectionKeys['about']),
                 const ExperienceSection(),
                 CaseStudiesSection(key: sectionKeys['case-studies']),

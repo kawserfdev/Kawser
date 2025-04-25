@@ -1,9 +1,9 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kawser/models/skill.dart';
+import 'package:kawser/providers/get_providers.dart';
 import 'package:kawser/view/components/section_title.dart';
 import '../app_theme.dart';
-import '../providers/providers.dart';
 import '../responsive_helper.dart';
 
 class AboutSection extends ConsumerWidget {
@@ -13,8 +13,8 @@ class AboutSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = ResponsiveHelper.isMobile(context);
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
-    final skillsStream = ref.watch(skillsProvider);
-    
+    final skillsStream = ref.watch(getSkillsProvider);
+
     return Container(
       width: double.infinity,
       color: const Color(0xFF191919),
@@ -28,21 +28,23 @@ class AboutSection extends ConsumerWidget {
               const SectionTitle(title: "About Me"),
               isMobile
                   ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildAboutText(),
-                        const SizedBox(height: 40),
-                        _buildCompetencies(context, skillsStream),
-                      ],
-                    )
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildAboutText(),
+                      const SizedBox(height: 40),
+                      _buildCompetencies(context, skillsStream),
+                    ],
+                  )
                   : Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(child: _buildAboutText()),
-                        const SizedBox(width: 60),
-                        Expanded(child: _buildCompetencies(context, skillsStream)),
-                      ],
-                    ),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(child: _buildAboutText()),
+                      const SizedBox(width: 60),
+                      Expanded(
+                        child: _buildCompetencies(context, skillsStream),
+                      ),
+                    ],
+                  ),
             ],
           ),
         ),
@@ -67,8 +69,12 @@ class AboutSection extends ConsumerWidget {
     );
   }
 
-  Widget _buildCompetencies(BuildContext context, AsyncValue<List<SkillCategory>> skillsStream) {
+  Widget _buildCompetencies(
+    BuildContext context,
+    AsyncValue<List<SkillCategory>> skillsStream,
+  ) {
     final isMobile = ResponsiveHelper.isMobile(context);
+    print("Skills Data${skillsStream.value}");
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,14 +125,18 @@ class AboutSection extends ConsumerWidget {
               },
             );
           },
-          loading: () => const Center(
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
-            ),
-          ),
-          error: (error, stackTrace) => Center(
-            child: Text('Error loading skills: ${error.toString()}'),
-          ),
+          loading:
+              () => const Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    AppTheme.primaryColor,
+                  ),
+                ),
+              ),
+          error:
+              (error, stackTrace) => Center(
+                child: Text('Error loading skills: ${error.toString()}'),
+              ),
         ),
       ],
     );

@@ -61,6 +61,7 @@ class DataViewer extends ConsumerWidget {
                   return ListTile(
                     title: Text(work.title),
                     subtitle: Text(work.description),
+                    // ignore: unnecessary_null_comparison
                     trailing: work.imageUrl != null && work.imageUrl.isNotEmpty
                         ? Image.network(
                             work.imageUrl,

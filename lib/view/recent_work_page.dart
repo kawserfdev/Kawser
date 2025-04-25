@@ -14,7 +14,7 @@ class RecentWorkSection extends ConsumerWidget {
     final isMobile = ResponsiveHelper.isMobile(context);
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
     final recentWorksStream = ref.watch(recentWorksProvider);
-    
+
     return Container(
       width: double.infinity,
       color: AppTheme.backgroundColor,
@@ -22,6 +22,7 @@ class RecentWorkSection extends ConsumerWidget {
       child: Center(
         child: Container(
           width: containerWidth,
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,14 +56,20 @@ class RecentWorkSection extends ConsumerWidget {
                     },
                   );
                 },
-                loading: () => const Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
-                  ),
-                ),
-                error: (error, stackTrace) => Center(
-                  child: Text('Error loading recent works: ${error.toString()}'),
-                ),
+                loading:
+                    () => const Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          AppTheme.primaryColor,
+                        ),
+                      ),
+                    ),
+                error:
+                    (error, stackTrace) => Center(
+                      child: Text(
+                        'Error loading recent works: ${error.toString()}',
+                      ),
+                    ),
               ),
             ],
           ),
