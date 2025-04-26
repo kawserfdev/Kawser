@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kawser/view/components/section_title.dart';
 import 'package:kawser/view/components/testimonial_card.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../app_theme.dart';
 import '../providers/providers.dart';
 import '../responsive_helper.dart';
@@ -14,7 +15,7 @@ class TestimonialsSection extends ConsumerWidget {
     final isMobile = ResponsiveHelper.isMobile(context);
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
     final testimonialsStream = ref.watch(testimonialsProvider);
-    
+
     return Container(
       width: double.infinity,
       color: const Color(0xFF191919),
@@ -26,8 +27,14 @@ class TestimonialsSection extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SectionTitle(title: "Testimonials"),
+
               testimonialsStream.when(
                 data: (testimonials) {
+                  if (testimonials.isEmpty) {
+                    SizedBox(
+                      child: Image.asset('assets/images/coming-soon.jpg'),
+                    );
+                  }
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -44,18 +51,30 @@ class TestimonialsSection extends ConsumerWidget {
                         testimonial: testimonial.testimonial,
                         name: testimonial.name,
                         position: testimonial.position,
+                        onTap: () async {
+                          final Uri url = Uri.parse(testimonial.imageUrl!);
+                          if (await canLaunchUrl(url)) {
+                            await launchUrl(url);
+                          }
+                        },
                       );
                     },
                   );
                 },
-                loading: () => const Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
-                  ),
-                ),
-                error: (error, stackTrace) => Center(
-                  child: Text('Error loading testimonials: ${error.toString()}'),
-                ),
+                loading:
+                    () => const Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          AppTheme.primaryColor,
+                        ),
+                      ),
+                    ),
+                error:
+                    (error, stackTrace) => Center(
+                      child: Text(
+                        'Error loading testimonials: ${error.toString()}',
+                      ),
+                    ),
               ),
             ],
           ),

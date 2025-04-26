@@ -14,18 +14,14 @@ class FooterSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 40),
       child: Column(
         children: [
-          const SocialIcons(
-            centered: true,
-          ),
+          const SocialIcons(centered: true),
           const SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 "© ${DateTime.now().year} Kawser Ahmed. All rights reserved.",
-                style: const TextStyle(
-                  color: AppTheme.textSecondaryColor,
-                ),
+                style: const TextStyle(color: AppTheme.textSecondaryColor),
               ),
               // Hidden admin link
               InkWell(
@@ -36,13 +32,16 @@ class FooterSection extends StatelessWidget {
                   padding: EdgeInsets.only(left: 6.0),
                   child: Text(
                     "•",
-                    style: TextStyle(
-                      color: AppTheme.textSecondaryColor,
-                    ),
+                    style: TextStyle(color: AppTheme.textSecondaryColor),
                   ),
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 18),
+          Text(
+            "Built with Flutter",
+            style: TextStyle(color: AppTheme.textSecondaryColor),
           ),
         ],
       ),

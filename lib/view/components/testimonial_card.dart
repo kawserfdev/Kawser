@@ -4,12 +4,14 @@ class TestimonialCard extends StatelessWidget {
   final String testimonial;
   final String name;
   final String position;
+  final VoidCallback? onTap;
   
   const TestimonialCard({
     Key? key,
     required this.testimonial,
     required this.name,
     required this.position,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -55,45 +57,48 @@ class TestimonialCard extends StatelessWidget {
                 ),
               ),
               const Spacer(), // Push the avatar and name to the bottom
-              Row(
-                children: [
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF333333),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.person,
-                        color: Color(0xFF666666),
-                        size: 20,
+              GestureDetector(
+                onTap: onTap,
+                child: Row(
+                  children: [
+                    Container(
+                      width: 48,
+                      height: 48,
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF333333),
+                        shape: BoxShape.circle,
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                      child: const Center(
+                        child: Icon(
+                          Icons.person,
+                          color: Color(0xFF666666),
+                          size: 20,
                         ),
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        position,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFFBDBDBD),
+                    ),
+                    const SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        const SizedBox(height: 4),
+                        Text(
+                          position,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFFBDBDBD),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
