@@ -44,7 +44,7 @@ class TestimonialsSection extends StatelessWidget {
       {
         'testimonial':
             '"As an intern at our company, Kawser showed exceptional potential and quickly adapted to our development processes. His dedication to learning and problem-solving skills led to his promotion to a junior developer role in record time."',
-        'name': 'Mahmud Hasan',
+        'name': 'Abdullah',
         'position': 'CTO, RBF Tech Zone',
         'imageUrl':''
       },
