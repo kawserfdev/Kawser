@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kawser/models/skill.dart';
-import 'package:kawser/providers/get_providers.dart';
+import 'package:kawser/providers/providers.dart';
 import 'package:kawser/view/components/section_title.dart';
 import '../app_theme.dart';
 import '../responsive_helper.dart';
@@ -13,7 +13,7 @@ class AboutSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = ResponsiveHelper.isMobile(context);
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
-    final skillsStream = ref.watch(getSkillsProvider);
+    final skillsValue = ref.watch(skillsProvider);
 
     return Container(
       width: double.infinity,
@@ -32,7 +32,7 @@ class AboutSection extends ConsumerWidget {
                     children: [
                       _buildAboutText(),
                       const SizedBox(height: 40),
-                      _buildCompetencies(context, skillsStream),
+                      _buildCompetencies(context, skillsValue),
                     ],
                   )
                   : Row(
@@ -41,7 +41,7 @@ class AboutSection extends ConsumerWidget {
                       Expanded(child: _buildAboutText()),
                       const SizedBox(width: 60),
                       Expanded(
-                        child: _buildCompetencies(context, skillsStream),
+                        child: _buildCompetencies(context, skillsValue),
                       ),
                     ],
                   ),
@@ -71,10 +71,9 @@ class AboutSection extends ConsumerWidget {
 
   Widget _buildCompetencies(
     BuildContext context,
-    AsyncValue<List<SkillCategory>> skillsStream,
+    AsyncValue<List<SkillCategory>> skillsValue,
   ) {
     final isMobile = ResponsiveHelper.isMobile(context);
-    print("Skills Data${skillsStream.value}");
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +87,7 @@ class AboutSection extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 16),
-        skillsStream.when(
+        skillsValue.when(
           data: (skills) {
             return GridView.builder(
               shrinkWrap: true,
