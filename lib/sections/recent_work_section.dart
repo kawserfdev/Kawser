@@ -1,85 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart'; // Import Riverpod
+import 'package:kawser/providers/providers.dart'; // Import providers
 import 'package:kawser/view/components/case_card.dart';
 import 'package:kawser/view/components/section_title.dart';
 import '../app_theme.dart';
 import '../responsive_helper.dart';
+import '../models/recent_work.dart'; // Import RecentWork model
 
-class RecentWorkSection extends StatelessWidget {
+class RecentWorkSection extends ConsumerWidget { // Changed to ConsumerWidget
   const RecentWorkSection({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) { // Added WidgetRef ref
     final isMobile = ResponsiveHelper.isMobile(context);
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
-
-    final recentWorks = [
-      {
-        'badge': CaseBadge(text: 'P2P platform', color: AppTheme.primaryColor),
-        'title': 'Shpper',
-        'description':
-            'Shpper is a P2P platform that connects senders and shoppers with travelers as couriers, turning daily flights into a global delivery fleet. Beyond shipping, users can act as personal shoppers, offering destination-based products. We aim to create a borderless, eco-friendly, and affordable marketplace for global shipping and shopping.',
-        'linkText': 'View More',
-        'linkUrl':
-            'https://play.google.com/store/apps/details?id=com.shpper.app&pcampaignid=web_share',
-        'imageUrl': 'assets/images/shpper.png',
-      },
-      {
-        'badge': CaseBadge(
-          text: 'Hotel booking platform',
-          color: AppTheme.primaryColor,
-        ),
-        'title': 'Venue Finder',
-        'description':
-            'Venue Finder is the ultimate solution for finding and booking venues tailored to your specific needs. Whether youre planning a corporate meeting, wedding, or special event, our app offers a variety of spaces from small rooms for a few attendees to large venues that can accommodate hundreds',
-        'linkText': 'View More',
-        'linkUrl':
-            'https://play.google.com/store/apps/details?id=com.venuefinder.mobileapp&pcampaignid=web_share%22(string)useTechnology',
-        'imageUrl': 'assets/images/venue_finder.jpg',
-      },
-      {
-        'badge': CaseBadge(text: 'E-commerce', color: AppTheme.primaryColor),
-        'title': 'GhorerBazar App',
-        'description':
-            'A complete e-commerce solution for GhorerBazar, featuring product browsing, cart management, order tracking, and partial payment processing.',
-        'linkText': 'View More',
-        'linkUrl': 'https://ghorerbazar.com/',
-        'imageUrl': 'assets/images/coming-soon.jpg',
-      },
-      {
-        'badge': CaseBadge(
-          text: 'Management Tool',
-          color: AppTheme.primaryColor,
-        ),
-        'title': 'Order Management Tool',
-        'description':
-            'An internal tool for GhorerBazar operations team to manage customer orders, process payments, and track delivery status in real-time.',
-        'linkText': 'View More',
-        'linkUrl': 'https://ghorerbazar.com/',
-        'imageUrl': 'assets/images/coming-soon.jpg',
-      },
-      {
-        'badge': CaseBadge(text: 'Fashion', color: AppTheme.primaryColor),
-        'title': 'Glamour',
-        'description':
-            'A beauty and fashion e-commerce application with personalized recommendations, AR try-on features, and social sharing capabilities.',
-        'linkText': 'View More',
-        'linkUrl': 'https://github.com/kawserfdev/glamuare',
-        'imageUrl': 'assets/images/github-logo.jpg',
-      },
-      {
-        'badge': CaseBadge(text: 'Education', color: AppTheme.primaryColor),
-        'title': 'School Management System',
-        'description':
-            'A comprehensive school management solution with student records, attendance tracking, grade management, and parent communication features.',
-        'linkText': 'View More',
-        'linkUrl': 'https://github.com/kawserfdev/School-Management-System.git',
-        'imageUrl': 'assets/images/github-logo.jpg',
-      },
-    ];
+    final recentWorksAsync = ref.watch(recentWorksProvider); // Watch the provider
 
     return Container(
       width: double.infinity,
-      color: AppTheme.backgroundColor,
+      color: AppTheme.backgroundColor, // Consider making this dynamic if needed
       padding: ResponsiveHelper.getPagePadding(context),
       child: Center(
         child: Container(
@@ -89,30 +28,57 @@ class RecentWorkSection extends StatelessWidget {
             children: [
               const SectionTitle(title: "Recent Work"),
               const SizedBox(height: 24),
-
-              SingleChildScrollView(
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: isMobile ? 1 : 2,
-                    crossAxisSpacing: 24,
-                    mainAxisSpacing: 24,
-                    childAspectRatio: isMobile ? 0.8 : 0.8,
-                  ),
-                  itemCount: recentWorks.length,
-                  itemBuilder: (context, index) {
-                    final work = recentWorks[index];
-                    return CaseCard(
-                      badge: work['badge'] as CaseBadge,
-                      title: work['title'] as String,
-                      description: work['description'] as String,
-                      linkText: work['linkText'] as String,
-                      linkUrl: work['linkUrl'] as String,
-                      imageUrl: work['imageUrl'] as String,
-                      isRecentWork: true,
+              recentWorksAsync.when(
+                data: (recentWorks) {
+                  if (recentWorks.isEmpty) {
+                    return const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Text("No recent work available at the moment.", style: AppTheme.bodyTextStyle),
+                      ),
                     );
-                  },
+                  }
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: isMobile ? 1 : 2,
+                      crossAxisSpacing: 24,
+                      mainAxisSpacing: 24,
+                      childAspectRatio: isMobile ? 0.8 : 0.85, // Adjusted aspect ratio
+                    ),
+                    itemCount: recentWorks.length,
+                    itemBuilder: (context, index) {
+                      final work = recentWorks[index];
+                      return CaseCard(
+                        badge: CaseBadge(
+                          text: work.badgeText,
+                          // Assuming badgeColorHex is a string like '#RRGGBB' or 'RRGGBB'
+                          color: Color(int.parse(work.badgeColorHex.replaceFirst('#', '0xff'))),
+                        ),
+                        title: work.title,
+                        description: work.description,
+                        linkText: work.linkText ?? 'View More',
+                        linkUrl: work.linkUrl,
+                        imageUrl: work.imageUrl,
+                        isRecentWork: true,
+                      );
+                    },
+                  );
+                },
+                loading: () => const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: CircularProgressIndicator(
+                       valueColor: AlwaysStoppedAnimation<Color>(AppTheme.primaryColor),
+                    ),
+                  ),
+                ),
+                error: (err, stack) => Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text('Error loading recent work: $err', style: const TextStyle(color: Colors.red)),
+                  ),
                 ),
               ),
             ],

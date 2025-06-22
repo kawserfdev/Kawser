@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kawser/models/skill.dart';
-import 'package:kawser/providers/get_providers.dart';
+import 'package:kawser/providers/providers.dart'; // Updated import
 import 'package:kawser/view/components/section_title.dart';
 import '../app_theme.dart';
 import '../responsive_helper.dart';
+import '../models/about.dart'; // Import the About model
 
 class AboutSection extends ConsumerWidget {
   const AboutSection({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class AboutSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isMobile = ResponsiveHelper.isMobile(context);
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
-    final skillsStream = ref.watch(getSkillsProvider);
+    final skillsStream = ref.watch(skillsProvider); // Updated provider
+    final aboutDataAsync = ref.watch(aboutProvider); // Watch the new aboutProvider
 
     return Container(
       width: double.infinity,
@@ -25,26 +27,40 @@ class AboutSection extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SectionTitle(title: "About Me"),
+              aboutDataAsync.when(
+                data: (aboutData) => SectionTitle(title: aboutData.title.isNotEmpty ? aboutData.title : "About Me"),
+                loading: () => const SectionTitle(title: "About Me"),
+                error: (err, stack) => const SectionTitle(title: "About Me (Error)"),
+              ),
               isMobile
                   ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildAboutText(),
-                      const SizedBox(height: 40),
-                      _buildCompetencies(context, skillsStream),
-                    ],
-                  )
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        aboutDataAsync.when(
+                          data: (aboutData) => _buildAboutText(aboutData),
+                          loading: () => const Center(child: CircularProgressIndicator()),
+                          error: (err, stack) => Text('Error loading about data: $err'),
+                        ),
+                        const SizedBox(height: 40),
+                        _buildCompetencies(context, skillsStream),
+                      ],
+                    )
                   : Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(child: _buildAboutText()),
-                      const SizedBox(width: 60),
-                      Expanded(
-                        child: _buildCompetencies(context, skillsStream),
-                      ),
-                    ],
-                  ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: aboutDataAsync.when(
+                            data: (aboutData) => _buildAboutText(aboutData),
+                            loading: () => const Center(child: CircularProgressIndicator()),
+                            error: (err, stack) => Text('Error loading about data: $err'),
+                          ),
+                        ),
+                        const SizedBox(width: 60),
+                        Expanded(
+                          child: _buildCompetencies(context, skillsStream),
+                        ),
+                      ],
+                    ),
             ],
           ),
         ),
@@ -52,19 +68,43 @@ class AboutSection extends ConsumerWidget {
     );
   }
 
-  Widget _buildAboutText() {
+  Widget _buildAboutText(About aboutData) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
+      children: [
         Text(
-          "Mobile App Developer with over 2 years of hands-on experience in Flutter-based application development, currently leading the mobile technology stack at GhorerBazar. Skilled in designing, developing, and maintaining customer-facing and internal tools, including complex modules like partial payment systems.",
+          aboutData.description,
           style: AppTheme.bodyTextStyle,
         ),
-        SizedBox(height: 24),
-        Text(
-          "Adept at using state management solutions (Provider, Riverpod, GetX), Firebase services, and APIs for building scalable, high-performance apps. With a strong foundation in computer science and a passion for clean architecture and user experience, I bring both technical expertise and business-focused thinking to every project.",
-          style: AppTheme.bodyTextStyle,
-        ),
+        // Add more fields from aboutData if needed, e.g., aboutData.imageUrl
+        if (aboutData.imageUrl != null && aboutData.imageUrl!.isNotEmpty) ...[
+          const SizedBox(height: 24),
+          Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: 300, // Adjust as needed
+                maxWidth: ResponsiveHelper.getContainerWidth(GlobalKey().currentContext!) * 0.8, // Adjust as needed
+              ),
+              child: Image.network(
+                aboutData.imageUrl!,
+                fit: BoxFit.contain,
+                loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return const Text('Could not load image', style: TextStyle(color: Colors.red));
+                },
+              ),
+            ),
+          ),
+        ],
       ],
     );
   }
@@ -74,7 +114,7 @@ class AboutSection extends ConsumerWidget {
     AsyncValue<List<SkillCategory>> skillsStream,
   ) {
     final isMobile = ResponsiveHelper.isMobile(context);
-    print("Skills Data${skillsStream.value}");
+    // print("Skills Data${skillsStream.value}"); // Commented out or remove print
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,23 +130,26 @@ class AboutSection extends ConsumerWidget {
         const SizedBox(height: 16),
         skillsStream.when(
           data: (skills) {
+            if (skills.isEmpty) {
+              return const Text("No skills listed yet.", style: AppTheme.bodyTextStyle);
+            }
             return GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: isMobile ? 1 : 2,
-                childAspectRatio: isMobile ? 4 : 2.5,
+                childAspectRatio: isMobile ? 4 : 3, // Adjusted aspect ratio
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
               ),
               itemCount: skills.length,
               itemBuilder: (context, index) {
-                final skill = skills[index];
+                final skillCategory = skills[index];
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      skill.title,
+                      skillCategory.title,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -115,7 +158,7 @@ class AboutSection extends ConsumerWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      skill.skills.join(', '),
+                      skillCategory.skills.join(', '),
                       style: const TextStyle(
                         color: AppTheme.textSecondaryColor,
                       ),
@@ -125,18 +168,16 @@ class AboutSection extends ConsumerWidget {
               },
             );
           },
-          loading:
-              () => const Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    AppTheme.primaryColor,
-                  ),
-                ),
+          loading: () => const Center(
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                AppTheme.primaryColor,
               ),
-          error:
-              (error, stackTrace) => Center(
-                child: Text('Error loading skills: ${error.toString()}'),
-              ),
+            ),
+          ),
+          error: (error, stackTrace) => Center(
+            child: Text('Error loading skills: ${error.toString()}', style: const TextStyle(color: Colors.red)),
+          ),
         ),
       ],
     );

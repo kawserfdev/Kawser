@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/case_study.dart';
 import '../models/recent_work.dart';
+import '../models/about.dart';
+import '../models/contact.dart';
 import '../models/skill.dart';
 import '../models/testimonial.dart';
 
@@ -12,6 +14,8 @@ class FirebaseService {
   CollectionReference get _testimonialsCollection => _firestore.collection('testimonials');
   CollectionReference get _caseStudiesCollection => _firestore.collection('case_studies');
   CollectionReference get _skillsCollection => _firestore.collection('skills');
+  CollectionReference get _aboutCollection => _firestore.collection('about');
+  CollectionReference get _contactCollection => _firestore.collection('contact');
   
   // Recent Works
   Stream<List<RecentWork>> getRecentWorks() {
@@ -77,10 +81,23 @@ class FirebaseService {
         });
   }
 
+  // About
+  Stream<About> getAbout() {
+    // Assuming 'about' collection has a single document with ID 'details'
+    return _aboutCollection.doc('details').snapshots().map((snapshot) {
+      final data = snapshot.data() as Map<String, dynamic>;
+      return About.fromJson(data);
+    });
+  }
 
-
-
-
+  // Contact
+  Stream<Contact> getContact() {
+    // Assuming 'contact' collection has a single document with ID 'details'
+    return _contactCollection.doc('details').snapshots().map((snapshot) {
+      final data = snapshot.data() as Map<String, dynamic>;
+      return Contact.fromJson(data);
+    });
+  }
 
   // Create Operations
   Future<void> addRecentWork(RecentWork recentWork) async {
@@ -114,6 +131,18 @@ class FirebaseService {
     
     await _skillsCollection.doc(skill.id).set(data);
   }
+
+  Future<void> addAbout(About about) async {
+    Map<String, dynamic> data = about.toJson();
+    // Assuming 'about' collection has a single document with ID 'details'
+    await _aboutCollection.doc('details').set(data);
+  }
+
+  Future<void> addContact(Contact contact) async {
+    Map<String, dynamic> data = contact.toJson();
+    // Assuming 'contact' collection has a single document with ID 'details'
+    await _contactCollection.doc('details').set(data);
+  }
   
   // Update Operations
   Future<void> updateRecentWork(RecentWork recentWork) async {
@@ -146,6 +175,20 @@ class FirebaseService {
     data['updatedAt'] = FieldValue.serverTimestamp();
     
     await _skillsCollection.doc(skill.id).update(data);
+  }
+
+  Future<void> updateAbout(About about) async {
+    Map<String, dynamic> data = about.toJson();
+    data['updatedAt'] = FieldValue.serverTimestamp();
+    // Assuming 'about' collection has a single document with ID 'details'
+    await _aboutCollection.doc('details').update(data);
+  }
+
+  Future<void> updateContact(Contact contact) async {
+    Map<String, dynamic> data = contact.toJson();
+    data['updatedAt'] = FieldValue.serverTimestamp();
+    // Assuming 'contact' collection has a single document with ID 'details'
+    await _contactCollection.doc('details').update(data);
   }
   
   // Delete Operations

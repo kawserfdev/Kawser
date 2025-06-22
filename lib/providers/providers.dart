@@ -2,6 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../models/case_study.dart';
 import '../models/recent_work.dart';
+import '../models/about.dart';
+import '../models/contact.dart';
 import '../models/skill.dart';
 import '../models/testimonial.dart';
 import '../services/firebase_service.dart';
@@ -41,3 +43,16 @@ Stream<List<SkillCategory>> skills(SkillsRef ref) {
   return firebaseService.getSkills();
 }
 
+// About provider
+@riverpod
+Stream<About> about(AboutRef ref) {
+  final firebaseService = ref.watch(firebaseServiceProvider);
+  return firebaseService.getAbout();
+}
+
+// Contact provider
+@riverpod
+Stream<Contact> contact(ContactRef ref) {
+  final firebaseService = ref.watch(firebaseServiceProvider);
+  return firebaseService.getContact();
+}
