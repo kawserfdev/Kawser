@@ -19,14 +19,18 @@ class FirebaseService {
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) {
+          
           return snapshot.docs.map((doc) {
             final data = doc.data() as Map<String, dynamic>;
+             
             return RecentWork.fromJson({
               'id': doc.id,
               ...data,
             });
           }).toList();
+
         });
+        
   }
   
   // Testimonials
@@ -64,11 +68,12 @@ class FirebaseService {
   // Skills
   Stream<List<SkillCategory>> getSkills() {
     return _skillsCollection
-        .orderBy('order')
+        .orderBy('createdAt')
         .snapshots()
         .map((snapshot) {
           return snapshot.docs.map((doc) {
             final data = doc.data() as Map<String, dynamic>;
+            print("Skill:${data.values}");
             return SkillCategory.fromJson({
               'id': doc.id,
               ...data,

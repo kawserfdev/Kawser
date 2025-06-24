@@ -38,6 +38,6 @@ Stream<List<CaseStudy>> caseStudies(CaseStudiesRef ref) {
 @riverpod
 Stream<List<SkillCategory>> skills(SkillsRef ref) {
   final firebaseService = ref.watch(firebaseServiceProvider);
+  //print("Skill: ${firebaseService.getSkills}");
   return firebaseService.getSkills();
 }
-

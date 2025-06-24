@@ -44,7 +44,7 @@ class TestimonialsSection extends ConsumerWidget {
                         testimonial: testimonial.testimonial,
                         name: testimonial.name,
                         position: testimonial.position,
-                        imageUrl: testimonial.imageUrl,
+                        //imageUrl: testimonial.imageUrl,
                       );
                     },
                   );
