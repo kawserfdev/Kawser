@@ -20,7 +20,8 @@ class FooterSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "© ${DateTime.now().year} Kawser Ahmed. All rights reserved.",
+                "© 2025 Kawser Ahmed. All rights reserved.",
+                //"© ${DateTime.now().year} Kawser Ahmed. All rights reserved.",
                 style: const TextStyle(color: AppTheme.textSecondaryColor),
               ),
               // Hidden admin link

@@ -28,19 +28,39 @@ class _ContactSectionState extends State<ContactSection> {
     super.dispose();
   }
 
-  void _submitForm() {
-    if (_formKey.currentState?.validate() ?? false) {
-      // In a real app, you would send the form data to a backend service
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Message sent successfully!'),
-          backgroundColor: AppTheme.primaryColor,
-        ),
-      );
-      _nameController.clear();
-      _emailController.clear();
-      _messageController.clear();
-    }
+  void _submitForm() async{
+    final url = Uri.parse("https://api.whatsapp.com/message/RCBUP7VXGV4CN1?autoload=1&app_absent=0");
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url, mode: LaunchMode.externalApplication); 
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Could not open WhatsApp'),
+        backgroundColor: AppTheme.primaryColor,
+      ),
+    );
+    return;
+  }
+
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text('Go to WhatsApp'),
+      backgroundColor: AppTheme.primaryColor,
+    ),
+  );
+    // if (_formKey.currentState?.validate() ?? false) {
+    //   // In a real app, you would send the form data to a backend service
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(
+    //       content: Text('Message sent successfully!'),
+    //       backgroundColor: AppTheme.primaryColor,
+    //     ),
+    //   );
+    //   _nameController.clear();
+    //   _emailController.clear();
+    //   _messageController.clear();
+    // }
   }
 
   @override
@@ -103,7 +123,7 @@ class _ContactSectionState extends State<ContactSection> {
         const SizedBox(height: 16),
         _buildContactItem(
           icon: FontAwesomeIcons.envelope, 
-          text: "kawsersoftengineer@gmail.com",
+          text: "kawser.me.dev@gmail.com",
           onTap: () => launchUrl(Uri.parse('mailto:kawsersoftengineer@gmail.com')),
         ),
         const SizedBox(height: 12),
@@ -153,69 +173,101 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildContactForm() {
+  // Widget _buildContactForm() {
+  //   return Form(
+  //     key: _formKey,
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         Text(
+  //           "Name",
+  //           style: TextStyle(color: AppTheme.textColor),
+  //         ),
+  //         const SizedBox(height: 8),
+  //         TextFormField(
+  //           controller: _nameController,
+  //           decoration: _inputDecoration("Your Name"),
+  //           validator: (value) {
+  //             if (value == null || value.isEmpty) {
+  //               return 'Please enter your name';
+  //             }
+  //             return null;
+  //           },
+  //         ),
+  //         const SizedBox(height: 16),
+  //         Text(
+  //           "Email",
+  //           style: TextStyle(color: AppTheme.textColor),
+  //         ),
+  //         const SizedBox(height: 8),
+  //         TextFormField(
+  //           controller: _emailController,
+  //           decoration: _inputDecoration("Your Email"),
+  //           keyboardType: TextInputType.emailAddress,
+  //           validator: (value) {
+  //             if (value == null || value.isEmpty) {
+  //               return 'Please enter your email';
+  //             }
+  //             if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+  //               return 'Please enter a valid email';
+  //             }
+  //             return null;
+  //           },
+  //         ),
+  //         const SizedBox(height: 16),
+  //         Text(
+  //           "Message",
+  //           style: TextStyle(color: AppTheme.textColor),
+  //         ),
+  //         const SizedBox(height: 8),
+  //         TextFormField(
+  //           controller: _messageController,
+  //           decoration: _inputDecoration("Your Message"),
+  //           maxLines: 5,
+  //           validator: (value) {
+  //             if (value == null || value.isEmpty) {
+  //               return 'Please enter your message';
+  //             }
+  //             return null;
+  //           },
+  //         ),
+  //         const SizedBox(height: 24),
+  //         PrimaryButton(
+  //           text: "Send Message",
+  //           onPressed: _submitForm,
+  //           fullWidth: true,
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+
+      Widget _buildContactForm() {
     return Form(
       key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Name",
+            "Contact with WhatsApp",
             style: TextStyle(color: AppTheme.textColor),
           ),
           const SizedBox(height: 8),
-          TextFormField(
-            controller: _nameController,
-            decoration: _inputDecoration("Your Name"),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your name';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 16),
+          Image.asset("assets/images/whatsapp_qr.jpg", scale: 2,),
+          const SizedBox(height: 8),
           Text(
-            "Email",
+            "Scan QR Code",
             style: TextStyle(color: AppTheme.textColor),
           ),
-          const SizedBox(height: 8),
-          TextFormField(
-            controller: _emailController,
-            decoration: _inputDecoration("Your Email"),
-            keyboardType: TextInputType.emailAddress,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your email';
-              }
-              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-                return 'Please enter a valid email';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 16),
+           const SizedBox(height: 16),
           Text(
-            "Message",
+            "OR",
             style: TextStyle(color: AppTheme.textColor),
           ),
           const SizedBox(height: 8),
-          TextFormField(
-            controller: _messageController,
-            decoration: _inputDecoration("Your Message"),
-            maxLines: 5,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your message';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 24),
           PrimaryButton(
             text: "Send Message",
             onPressed: _submitForm,
-            fullWidth: true,
+            fullWidth: false,
           ),
         ],
       ),
