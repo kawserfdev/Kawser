@@ -26,7 +26,7 @@ class ExperienceSection extends StatelessWidget {
                 context: context,
                 title: "Mobile App Developer",
                 company: "Ghorer Bazar, Rampura, Banasree, Dhaka",
-                period: "December 2024 - Present",
+                period: "December 2024 - August 2025",
                 description:
                     "As the sole mobile app developer at GhorerBazar, I am responsible for the full-cycle development, enhancement, and maintenance of the company's two core applications:",
                 responsibilities: [
@@ -44,7 +44,7 @@ class ExperienceSection extends StatelessWidget {
                 context: context,
                 title: "Junior Flutter Developer",
                 company: "Shpper, Dubai Silicon Oasis & Uttar Badda, Dhaka",
-                period: "February 2024 – November 2024",
+                period: "April 2023 - November 2024",
                 description:
                     "Integral to the development team working on creating, maintaining, and improving the Flutter app and admin website that supports Shpper services.",
                 responsibilities: [
@@ -60,7 +60,7 @@ class ExperienceSection extends StatelessWidget {
                 context: context,
                 title: "Intern and Junior Flutter Developer",
                 company: "RBF Tech Zone Ltd., Dhaka",
-                period: "January 2023 – December 2023",
+                period: "Jun 2022 - November 2022(Intern) | December 2022 - March 2023(Junior)",
                 description:
                     "Started as an intern from January to July 2023, then promoted to Junior Flutter Developer from August to December 2023. Gained fundamental Flutter development skills and contributed to company projects.",
                 responsibilities: [],

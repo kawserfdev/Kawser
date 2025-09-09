@@ -128,7 +128,7 @@ class HeroSection extends ConsumerWidget {
         ),
         const SizedBox(height: 24),
         Text(
-          "Currently leading the mobile technology stack at GhorerBazar with over 2 years of experience in Flutter-based application development. Specialized in creating beautiful, responsive, and user-friendly mobile applications.",
+          "Mobile App Developer with 3+ years of experience building high-performance Flutter applications. Skilled in Firebase, REST APIs, and state management (Provider, Riverpod, GetX). Delivered impactful solutions in e-commerce, fitness, booking, and management systems. Passionate about clean architecture, performance, and seamless user experiences.",
           style: TextStyle(
             fontSize: ResponsiveHelper.getFontSize(context, 16),
             color: Colors.grey[300],
@@ -149,7 +149,7 @@ class HeroSection extends ConsumerWidget {
               color: Colors.grey.withOpacity(0.3),
               margin: const EdgeInsets.symmetric(horizontal: 16),
             ),
-            _buildStatItem(context, '2+', 'Years\nExperience'),
+            _buildStatItem(context, '3+', 'Years\nExperience'),
             Container(
               height: 40,
               width: 1,
@@ -198,7 +198,7 @@ class HeroSection extends ConsumerWidget {
         OutlinedButton(
           onPressed: () async {
             final Uri url = Uri.parse(
-              'https://drive.google.com/file/d/1EN9t7SP6JovXPSHgCfwq1pwSIOUoskLb/view',
+              'https://drive.google.com/file/d/1CmggupTA8cMvCbR0E9zx1valZu5jAlLs/view?usp=sharing',
             );
             if (await canLaunchUrl(url)) {
               await launchUrl(url);

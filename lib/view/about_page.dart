@@ -57,7 +57,7 @@ class AboutSection extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const [
         Text(
-          "Mobile App Developer with over 2 years of hands-on experience in Flutter-based application development, currently leading the mobile technology stack at GhorerBazar. Skilled in designing, developing, and maintaining customer-facing and internal tools, including complex modules like partial payment systems.",
+          "Mobile App Developer with 3+ years of experience building high-performance Flutter applications. Skilled in Firebase, REST APIs, and state management (Provider, Riverpod, GetX). Delivered impactful solutions in e-commerce, fitness, booking, and management systems. Passionate about clean architecture, performance, and seamless user experiences.",
           style: AppTheme.bodyTextStyle,
         ),
         SizedBox(height: 24),
