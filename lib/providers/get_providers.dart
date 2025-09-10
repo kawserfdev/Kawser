@@ -4,6 +4,7 @@ import 'package:kawser/models/skill.dart';
 
 Future<List<SkillCategory>> fetchSkills() async {
   final snapshot = await FirebaseFirestore.instance.collection('skills').get();
+  
   return snapshot.docs
       .map((doc) => SkillCategory.fromJson({
             'id': doc.id,
@@ -18,5 +19,6 @@ Future<List<SkillCategory>> fetchSkills() async {
 final getSkillsProvider = FutureProvider.autoDispose<List<SkillCategory>>((
   ref,
 ) async {
+
   return await fetchSkills();
 });
