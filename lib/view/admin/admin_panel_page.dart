@@ -2,12 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kawser/app_theme.dart';
-import 'package:kawser/providers/providers.dart';
 import 'package:kawser/view/admin/forms/case_study_form.dart';
 import 'package:kawser/view/admin/forms/recent_work_form.dart';
 import 'package:kawser/view/admin/forms/skill_form.dart';
 import 'package:kawser/view/admin/forms/testimonial_form.dart';
-import 'package:kawser/view/admin/seed_data.dart';
 import 'tabs/case_studies_tab.dart';
 import 'tabs/recent_works_tab.dart';
 import 'tabs/skills_tab.dart';
@@ -148,8 +146,8 @@ void _showSeedDataDialog(BuildContext context, WidgetRef ref) {
             TextButton(
               onPressed: () async {
                 Navigator.pop(context);
-                final firebaseService = ref.read(firebaseServiceProvider);
-                final seedGenerator = SeedDataGenerator(firebaseService);
+                //final firebaseService = ref.read(firebaseServiceProvider);
+                //final seedGenerator = SeedDataGenerator(firebaseService);
 
                 // Show loading indicator
                 showDialog(

@@ -198,7 +198,7 @@ class HeroSection extends ConsumerWidget {
         OutlinedButton(
           onPressed: () async {
             final Uri url = Uri.parse(
-              'https://drive.google.com/file/d/1CmggupTA8cMvCbR0E9zx1valZu5jAlLs/view?usp=sharing',
+              'https://drive.google.com/file/d/1r6a6-uODPXMFH-6ySVxEnHhnLRCuCGsy/view?usp=sharing',
             );
             if (await canLaunchUrl(url)) {
               await launchUrl(url);

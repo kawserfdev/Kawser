@@ -37,13 +37,13 @@ class RecentWorkSection extends StatelessWidget {
     'imageUrl': 'assets/images/venue_finder.jpg',
   },
   {
-    'badge': CaseBadge(text: 'E-commerce', color: AppTheme.primaryColor),
-    'title': 'GhorerBazar App',
+    'badge': CaseBadge(text: 'School Management App', color: AppTheme.primaryColor),
+    'title': 'Learning Campus',
     'description':
-        'A complete e-commerce solution for GhorerBazar, featuring product browsing, cart management, order tracking, and partial payment processing.',
+        'A complete school management app with student records, attendance, results, fees, staff management, and real-time communication.',
     'linkText': 'View More',
-    'linkUrl': 'https://ghorerbazar.com/',
-    'imageUrl': 'assets/images/coming-soon.jpg',
+    'linkUrl': '',
+    'imageUrl': 'assets/images/learning-campus.png',
   },
   {
     'badge': CaseBadge(
@@ -55,7 +55,7 @@ class RecentWorkSection extends StatelessWidget {
         'An internal tool for GhorerBazar operations team to manage customer orders, process payments, and track delivery status in real-time.',
     'linkText': 'View More',
     'linkUrl': 'https://ghorerbazar.com/',
-    'imageUrl': 'assets/images/coming-soon.jpg',
+    'imageUrl': 'assets/images/omtppm.png',
   },
   {
     'badge': CaseBadge(text: 'Fashion', color: AppTheme.primaryColor),
@@ -64,25 +64,25 @@ class RecentWorkSection extends StatelessWidget {
         'A beauty and fashion e-commerce application with personalized recommendations, AR try-on features, and social sharing capabilities.',
     'linkText': 'View More',
     'linkUrl': 'https://github.com/kawserfdev/glamuare',
-    'imageUrl': 'assets/images/github-logo.jpg',
+    'imageUrl': 'assets/images/glamuare.png',
   },
-  {
-    'badge': CaseBadge(text: 'Education', color: AppTheme.primaryColor),
-    'title': 'School Management System',
-    'description':
-        'A comprehensive school management solution with student records, attendance tracking, grade management, and parent communication features.',
-    'linkText': 'View More',
-    'linkUrl': 'https://github.com/kawserfdev/School-Management-System.git',
-    'imageUrl': 'assets/images/github-logo.jpg',
-  },
+  // {
+  //   'badge': CaseBadge(text: 'E-Commerce Platform', color: AppTheme.primaryColor),
+  //   'title': 'Aladin',
+  //   'description':
+  //       'Aladin is a UAE-based shopping platform that focuses on curated deals and offers across a wide range of product categories, from electronics and fashion to home goods and wellness. The brand targets price-conscious consumers who want premium products at competitive prices. As part of their growth strategy, Aladin aimed to establish a mobile-first, scalable eCommerce website that delivers a fast, intuitive shopping experience for users across the UAE and beyond.',
+  //   'linkText': 'View More',
+  //   'linkUrl': 'https://www.royex.ae/case-studies/dealzin/',
+  //   'imageUrl': 'assets/images/aladin.png',
+  // },
   {
     'badge': CaseBadge(text: 'Flutter App', color: AppTheme.primaryColor),
-    'title': 'eCourt',
+    'title': 'E-Court',
     'description':
         'A Flutter-based mobile application for Bangladesh eCourt system, streamlining case registration, hearing schedules, and digital court services.',
     'linkText': 'View Website',
     'linkUrl': 'https://ecourt.gov.bd/',
-    'imageUrl': 'assets/images/coming-soon.jpg',
+    'imageUrl': 'assets/images/e-court.png',
   },
   {
     'badge': CaseBadge(text: 'HRM App', color: AppTheme.primaryColor),
@@ -91,7 +91,7 @@ class RecentWorkSection extends StatelessWidget {
         'A human resource management mobile application providing attendance tracking, payroll, leave management, and performance monitoring.',
     'linkText': 'View on Play Store',
     'linkUrl': 'https://play.google.com/store/apps/details?id=com.mysoftheaven.smarthrm&hl=en',
-    'imageUrl': 'assets/images/coming-soon.jpg',
+    'imageUrl': 'assets/images/hrm.png',
   },
   {
     'badge': CaseBadge(text: 'Learning Platform', color: AppTheme.primaryColor),
@@ -109,7 +109,7 @@ class RecentWorkSection extends StatelessWidget {
         'A web-based admin panel for managing medical learning platform content. Includes question management, user tracking, analytics, and reporting.',
     'linkText': 'View Case Study',
     'linkUrl': '#',
-    'imageUrl': 'assets/images/coming-soon.jpg',
+    'imageUrl': 'assets/images/testify-admin.png',
   },
   {
     'badge': CaseBadge(text: 'Flutter Plugin', color: AppTheme.primaryColor),
