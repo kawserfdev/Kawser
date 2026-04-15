@@ -22,11 +22,30 @@ class ExperienceSection extends StatelessWidget {
             children: [
               const SectionTitle(title: "Professional Experience"),
               const SizedBox(height: 20),
+               _buildExperienceItem(
+                context: context,
+                title: "Software Engineer",
+                company: "P.R.Tower , 924/1 , Level 8, Begum Rokeya, Prof. Abdullah Sarani, Shewrapara, Dhaka-1216",
+                period: "August 2025 - Present",
+                description:
+                    "Architected and designed mobile applications, developed scalable features, ensured code quality, integrated APIs, collaborated with cross-functional teams , managed releases and updates, and adopted new technologies to improve efficiency.",
+                responsibilities: [
+                  "Designed and developed scalable mobile application architectures",
+                  "Integrated APIs and collaborated with cross-functional teams",
+                  "Ensured code quality through testing, updates, and releases",
+                  "Ensuring consistent performance, stability, and security across all mobile platforms.",
+                  "Adopted new technologies to improve efficiency and user experience",
+                  "App Maintained in the Play-Console and App-Store"
+                ],
+                borderColor: AppTheme.primaryColor,
+                badgeColor: const Color(0xFF2E7D32),
+              ),
+              const SizedBox(height: 40),
               _buildExperienceItem(
                 context: context,
                 title: "Mobile App Developer",
                 company: "Ghorer Bazar, Rampura, Banasree, Dhaka",
-                period: "December 2024 - August 2025",
+                period: "May 2024 - July 2025",
                 description:
                     "As the sole mobile app developer at GhorerBazar, I am responsible for the full-cycle development, enhancement, and maintenance of the company's two core applications:",
                 responsibilities: [
@@ -36,15 +55,15 @@ class ExperienceSection extends StatelessWidget {
                   "Ensuring consistent performance, stability, and security across all mobile platforms.",
                   "Working closely with the founding/development team to implement business logic and UI/UX improvements.",
                 ],
-                borderColor: AppTheme.primaryColor,
-                badgeColor: const Color(0xFF2E7D32),
+                 borderColor: const Color(0xFF2196F3),
+                badgeColor: const Color(0xFF1565C0),
               ),
               const SizedBox(height: 40),
               _buildExperienceItem(
                 context: context,
-                title: "Junior Flutter Developer",
+                title: "Junior Flutter Developer (Remote)",
                 company: "Shpper, Dubai Silicon Oasis & Uttar Badda, Dhaka",
-                period: "April 2023 - November 2024",
+                period: "January 2023 - April 2024",
                 description:
                     "Integral to the development team working on creating, maintaining, and improving the Flutter app and admin website that supports Shpper services.",
                 responsibilities: [
@@ -52,21 +71,21 @@ class ExperienceSection extends StatelessWidget {
                   "Integrated Firebase notifications for real-time user updates",
                   "Implemented Google location searching functionality",
                 ],
-                borderColor: const Color(0xFF2196F3),
-                badgeColor: const Color(0xFF1565C0),
-              ),
-              const SizedBox(height: 40),
-              _buildExperienceItem(
-                context: context,
-                title: "Intern and Junior Flutter Developer",
-                company: "RBF Tech Zone Ltd., Dhaka",
-                period: "Jun 2022 - November 2022(Intern) | December 2022 - March 2023(Junior)",
-                description:
-                    "Started as an intern from January to July 2023, then promoted to Junior Flutter Developer from August to December 2023. Gained fundamental Flutter development skills and contributed to company projects.",
-                responsibilities: [],
                 borderColor: const Color(0xFFFF9800),
                 badgeColor: const Color(0xFFEF6C00),
               ),
+              // const SizedBox(height: 40),
+              // _buildExperienceItem(
+              //   context: context,
+              //   title: "Junior Flutter Developer",
+              //   company: "Sh, Dhaka",
+              //   period: "Jun 2022 - November 2022(Intern) | December 2022 - March 2023(Junior)",
+              //   description:
+              //       "Started as an intern from January to July 2023, then promoted to Junior Flutter Developer from August to December 2023. Gained fundamental Flutter development skills and contributed to company projects.",
+              //   responsibilities: [],
+              //   borderColor: const Color(0xFFFF9800),
+              //   badgeColor: const Color(0xFFEF6C00),
+              // ),
             ],
           ),
         ),

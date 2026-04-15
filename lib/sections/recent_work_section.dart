@@ -13,6 +13,16 @@ class RecentWorkSection extends StatelessWidget {
     final containerWidth = ResponsiveHelper.getContainerWidth(context);
 
    final recentWorks = [
+      {
+    'badge': CaseBadge(text: ' Land Services at One Address', color: AppTheme.primaryColor),
+    'title': 'Bhumi',
+    'description':
+        '1. Detailed information about land, registration, determination of land development tax – everything can now be done online in a completely digital and automated manner. 2. The system automatically determines the tax by considering all the land class, location, use, ceiling, late fee and provides online payment facility. 3. Step-by-step online procedures, real-time notifications and digital management make land services easier and reduce the suffering of the people.',
+    'linkText': 'View on Play Store',
+    'linkUrl':
+        'https://play.google.com/store/apps/details?id=com.minland.bhumi&pcampaignid=web_share',
+    'imageUrl': 'assets/images/bhumi.jpg',
+  },
   {
     'badge': CaseBadge(text: 'P2P platform', color: AppTheme.primaryColor),
     'title': 'Shpper',
@@ -79,18 +89,18 @@ class RecentWorkSection extends StatelessWidget {
     'badge': CaseBadge(text: 'Flutter App', color: AppTheme.primaryColor),
     'title': 'E-Court',
     'description':
-        'A Flutter-based mobile application for Bangladesh eCourt system, streamlining case registration, hearing schedules, and digital court services.',
+        'A Flutter-based mobile application designed for the Bangladesh eCourt system, aimed at enhancing efficiency and accessibility in judicial processes. The platform streamlines key functionalities such as case registration, hearing scheduling, and access to digital court services. It enables organizations to seamlessly file lawsuits and appeals, while also providing real-time updates on the status of ongoing cases and appeals.',
     'linkText': 'View Website',
     'linkUrl': 'https://ecourt.gov.bd/',
     'imageUrl': 'assets/images/e-court.png',
   },
   {
     'badge': CaseBadge(text: 'HRM App', color: AppTheme.primaryColor),
-    'title': 'Smart HRM',
+    'title': 'Sheba ERP',
     'description':
         'A human resource management mobile application providing attendance tracking, payroll, leave management, and performance monitoring.',
     'linkText': 'View on Play Store',
-    'linkUrl': 'https://play.google.com/store/apps/details?id=com.mysoftheaven.smarthrm&hl=en',
+    'linkUrl': 'https://play.google.com/store/apps/details?id=com.mysoftheaven.shebaerp',
     'imageUrl': 'assets/images/hrm.png',
   },
   {
